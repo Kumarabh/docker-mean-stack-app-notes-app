@@ -3,7 +3,8 @@ import { Note } from '../../types/note';
 import {HttpClient} from '@angular/common/http'
 import { Observable } from 'rxjs';
 
-const baseURL = 'http://node-app:3000/api/v1/notes'
+// const baseURL = 'http://node-app:3000/api/v1/notes'
+const baseURL = '/api/v1/notes';
 
 @Injectable({
   providedIn: 'root'
