@@ -1,11 +1,9 @@
-version: '3.3'
+version: '3'
 services:
   angular-app: 
     container_name: angular-app-service
     restart: always
-    build:
-      context: ./all-service
-      dockerfile: ./angular-app/Dockerfile
+    build: angular-app
     ports:
       - '4200:80'
     links: 
@@ -13,9 +11,7 @@ services:
   node-app: 
     container_name: node-app-service
     restart: always
-    build:
-      context: ./all-service
-      dockerfile: ./node-app/Dockerfile
+    build: node-app
     ports:
       - '3000:3000'
     links: 
