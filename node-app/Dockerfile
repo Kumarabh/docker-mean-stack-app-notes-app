@@ -1,7 +1,6 @@
 FROM node:13-alpine
 WORKDIR /usr/src/app
-COPY package.json .
-COPY package-lock.json .
+COPY node-app/package*.json .
 RUN npm install
 COPY . .
 EXPOSE 3000
