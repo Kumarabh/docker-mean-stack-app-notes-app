@@ -1,0 +1,34 @@
+<div class="container w-25 border mt-4 p-4 bg-gray">
+  <h4>Notes Gallary</h4>
+    <form [formGroup]="notesForm" (submit)="submit()">
+      <label for="title">Title</label> <br>
+      <input class="form-control" type="text" name="title" id="title" formControlName = "title"> <br>
+
+      <label for="description">Description</label> <br>
+      <input class="form-control" type="text" name="description" id="description" formControlName = "description"> <br>
+
+      <button class="form-control btn btn-warning" type="submit mt-2">Add note</button>
+    </form>
+</div>
+
+
+<div class="container w-50 mt-4 " >
+  <table class="table">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>TITLE</th>
+        <th>DESCRIPTION</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let note of notes; let i = index;">
+        <td>{{i + 1}}</td>
+        <td>{{note?.title}}</td>
+        <td>{{note?.description}}</td>
+        <th><button class="btn btn-sm btn-danger " (click)="deleteNote(note?._id)">Delete</button></th>
+      </tr>
+    </tbody>
+  </table>
+</div>

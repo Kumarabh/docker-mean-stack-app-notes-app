@@ -8,8 +8,18 @@ services:
       - '4200:80'
     links: 
       - mongo
+  node-app: 
+    container_name: node-app-service
+    restart: always
+    build: .
+    ports:
+      - '3000:3000'
+    links: 
+      - mongo
   mongo:
-    container_name: mongo-service
+    container_name: mongo-app-service
     image: mongo
     ports:
       - '27017:27017'
+  
+
