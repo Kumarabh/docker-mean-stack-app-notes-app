@@ -1,6 +1,5 @@
 FROM node:16-alpine as builder
 WORKDIR /app
-RUN npm cache clean --force
 COPY package.json .
 RUN npm install
 RUN npm i @angular/cli@15.1.6
