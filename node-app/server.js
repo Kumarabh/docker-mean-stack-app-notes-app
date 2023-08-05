@@ -17,7 +17,7 @@ app.use(helmet());
 app.use(helmet.crossOriginResourcePolicy({policy: 'cross-origin'}));
 app.use(morgan('common'));
 app.use(bodyParser.json());
-app.use(cors());
+app.use(cors({origin: '*'}));
 app.use('/api/v1/notes', noteRoutes);
 
 
