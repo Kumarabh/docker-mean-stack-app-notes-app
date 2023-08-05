@@ -74,6 +74,7 @@
           },
           "defaultConfiguration": "development",
           "options": {
+            "browserTarget": "angular-app:build:development",
             "proxyConfig": "src/proxy.conf.json"
           }
         },
