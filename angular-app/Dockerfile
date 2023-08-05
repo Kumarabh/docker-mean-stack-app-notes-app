@@ -1,12 +1,15 @@
-FROM node AS build
-WORKDIR /usr/app
-
-COPY ./package*.json ./
+FROM node:18.17.0 as builder
+WORKDIR /app
+RUN npm cache clean --force
+COPY package.json .
 RUN npm install
-COPY ./ ./
+RUN npm i @angular/cli@15.1.6
+COPY . /app
 RUN npm run build
 
-FROM nginx
-WORKDIR /usr/app
-COPY --from=build /usr/app/dist/project/ /usr/share/nginx/html/
-COPY ./nginx/angular.conf /etc/nginx/conf.d/default.conf
+# Nginx
+FROM nginx:1.21-alpine
+# COPY nginx.conf /etc/nginx/nginx.conf
+COPY --from=builder /app/dist/angular-app /usr/share/nginx/html
+# CMD ["nginx", "-g", "daemon off;"]
+EXPOSE 4200
