@@ -11,7 +11,7 @@ services:
   node-app: 
     container_name: node-app-service
     restart: always
-    build: .
+    build: node-app
     ports:
       - '3000:3000'
     links: 
