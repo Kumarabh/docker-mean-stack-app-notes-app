@@ -7,7 +7,7 @@ services:
     ports:
       - '80:80'
     links: 
-      - mongo
+      - node-app
   node-app: 
     container_name: node-app-service
     restart: always
