@@ -1,14 +1,12 @@
-FROM node:16-alpine as builder
-WORKDIR /app
-COPY package.json .
-RUN npm install
-RUN npm i @angular/cli@15.1.6
-COPY . /app
-RUN npm run build
+FROM node:16-alpine AS build
+WORKDIR /usr/app
 
-# Nginx
-FROM nginx:1.21-alpine
-# COPY nginx.conf /etc/nginx/nginx.conf
-COPY --from=builder /app/dist/angular-app /usr/share/nginx/html
-# CMD ["nginx", "-g", "daemon off;"]
-EXPOSE 4200
+COPY ./package*.json ./
+RUN npm install
+COPY ./ ./
+RUN npm run build --configuration production
+
+FROM nginx
+WORKDIR /usr/app
+COPY --from=build /usr/app/dist/project/ /usr/share/nginx/html/
+COPY ./nginx/angular.conf /etc/nginx/conf.d/default.conf
